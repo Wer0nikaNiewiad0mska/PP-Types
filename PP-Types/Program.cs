@@ -1,6 +1,8 @@
 ﻿// Write required code.
 
 // Data - do not change it in code!
+using System.Diagnostics.Metrics;
+
 string[] names = {
     "Mickey Mouse", "Minnie Mouse", "Donald Duck", "Goofy", "Pluto", "Daisy Duck", "Simba", "Nala", 
     "Timon", "Pumbaa", "Mufasa", "Ariel", "Flounder", "Sebastian", "Ursula", "Belle", "Beast", "Gaston", 
@@ -14,8 +16,22 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
-
-    // Write required code.
+    for (int i = 0; i < t.Length; i++)
+    {
+        Console.Write(t[i]);
+        if (i == t.Length - 1)
+        {
+            Console.Write(".");
+        }
+        else
+        {
+            Console.Write(", ");
+            if ((i + 1) % perLine == 0)
+            {
+                Console.WriteLine();
+            }
+        }
+    }
 
 }
 
@@ -27,10 +43,36 @@ void PrintGroups(string[] t, int perLine)
 
 void PrintColumns(string[] t, int perLine, int width)
 {
+    for (int i = 0; i < t.Length; i++)
+    {
+        int leng = t[i].Length;
 
-    // Write required code.
-
+        if (leng > width)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                Console.Write(t[i][j]);
+            }
+        }
+        else
+        {
+            Console.Write(t[i]);
+            for (int j = leng; j < width; j++)
+            {
+                Console.Write(' ');
+            }
+        }
+        if ((i + 1) % perLine != 0 && i != t.Length - 1)
+        {
+            Console.Write("| ");
+        }
+        if ((i + 1) % perLine == 0 || i == t.Length - 1)
+        {
+            Console.WriteLine();
+        }
+    }
 }
+
 
 
 // Test how your functions work. 
